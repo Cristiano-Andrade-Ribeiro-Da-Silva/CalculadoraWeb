@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Simples</title>
+    
     <link rel="stylesheet" href="./css/style.css">
     <script src="js/script.js" defer></script>
 </head>
 <body> 
     <main class="container">
+
+        <button class="btnHistorico">Historico</button>
 
         <section class="calculator">
 
@@ -26,9 +29,9 @@
 
             <div class="calculator__keys">
 
-                <button class="calculator__key" data-action="clear">AC</button>
-                <button class="calculator__key" data-action="power">x²</button>
-                <button class="calculator__key" data-action="sqrt">√</button>
+                <button class="calculator__key calculator__key--operator" data-action="clear">AC</button>
+                <button class="calculator__key calculator__key--operator" data-action="power">x²</button>
+                <button class="calculator__key calculator__key--operator" data-action="sqrt">√</button>
 
                 <button class="calculator__key calculator__key--operator" data-action="divide">÷</button>
 
@@ -57,6 +60,25 @@
                 <button class="calculator__key" data-action="decimal">.</button>
 
                 <button class="calculator__key calculator__key--equals" data-action="calculate">=</button>
+
+            </div>
+
+        </section>
+
+        
+
+        <section class="Historico">
+
+            <!-- Oso itens serão adicionados no js -->
+            <ul class="Historico_itens">
+
+            </ul>
+
+            <div class="Historico_button">
+
+                <button class="Historico_button_clear">Limpar</button>
+
+                <!-- Este botão está dentro deste container porque eu não sei se vou colocar mais uma funcionalidade no histórico -->
 
             </div>
 
