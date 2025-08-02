@@ -2,12 +2,19 @@ const resultado = document.querySelector('.calculator__display-text');
 const botoes = document.querySelectorAll('[data-action]');
 const numeros = document.querySelectorAll('[data-number]');
 
+const Container = document.querySelector('.container');
+
+const Calc = document.querySelector(".calculator");
+const CalcHeader = document.querySelector(".calculator__header");
+const CalcDisplay = document.querySelector('.calculator__display');
+const CalcDisplayTxt = document.querySelector('.calculator__display-text');
+
+
 const Historico = document.querySelector(".Historico");
 const btnHistorico = document.querySelector(".btnHistorico");
 const HistoricoItens = document.querySelector(".Historico_itens");
-const ContainerItens = document.querySelector(".Historico_itens_container");
 
-const Calc = document.querySelector(".calculator");
+const btnTema = document.querySelector(".btnTema");
 
 
 const horario = () =>
@@ -258,7 +265,7 @@ btnHistorico.addEventListener("click", () =>
 });
 
 
-limparHistorico = document.querySelector(".Historico_button_clear");
+let limparHistorico = document.querySelector(".Historico_button_clear");
 
 limparHistorico.addEventListener('click', () =>
 {
@@ -271,11 +278,39 @@ limparHistorico.addEventListener('click', () =>
 window.addEventListener("load", () =>
 {
     // Pegando os itens da lista salvos ou senão haver nada, pega uma lista vazia
-    ItensSalvos = JSON.parse(localStorage.getItem("salvos")) || [];
+    const ItensSalvos = JSON.parse(localStorage.getItem("salvos")) || [];
 
     // O forEach está lendo a lista toda de itens salvos 
     ItensSalvos.forEach(conteudo =>
     {
         HistoricoItens.innerHTML = conteudo;
+    });
+
+    // Função sugerida por AI
+    function ElementosTema(elementos, dark)
+    {
+        elementos.forEach(e => e.classList.toggle('light', !dark));
+    }
+
+    // Obtém o tema salvo no localStorage ou define o 'dark' como padrão
+    const tema = localStorage.getItem("tema") || 'dark';
+    document.body.classList.add(tema);
+    
+
+    let dark = (tema == 'dark'); 
+
+    // Usando a função sugerida
+    ElementosTema([Container, Calc, Historico, HistoricoItens, btnHistorico, btnTema, CalcHeader, CalcDisplay, CalcDisplayTxt, limparHistorico] ,dark);
+
+    btnTema.addEventListener('click', () =>
+    {
+        // Dark será true, se for removida, false.
+        let dark = document.body.classList.toggle('dark');
+
+        ElementosTema([document.body, Container, Calc, Historico, HistoricoItens, btnHistorico, btnTema, CalcHeader, CalcDisplay, CalcDisplayTxt, limparHistorico] ,dark);
+
+        // Salva o novo tema no localStorage
+        const NovoTema = dark ? "dark" : "light";
+        localStorage.setItem("tema", NovoTema);
     });
 });

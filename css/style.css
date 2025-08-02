@@ -8,10 +8,32 @@
 
 body
 {
+    transition: 1s;
+}
+
+body.dark
+{
     background-color: #000000;
 }
 
-.btnHistorico
+body.light
+{
+    background-color: #F5F5BC;
+}
+
+
+.ButtonsJs
+{
+    width: 150px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btnHistorico,
+.btnTema
 {
     width: 100px;
     height: 40px;
@@ -20,7 +42,7 @@ body
 
     font-size: 20px;
 
-    color: #ffffff;
+    color: #FFFFFF;
     background-color: transparent;
     border: 1px solid #0000FF;
     border-radius: 10px;
@@ -28,12 +50,27 @@ body
     transition: 0.5s;
 }
 
-.btnHistorico:hover
+.btnHistorico.light,
+.btnTema.light
+{
+    color: #000000;
+    border: 2px solid #FFB0DD;
+}
+
+.btnHistorico:hover,
+.btnTema:hover
 {
     color: #000000;
     background-color: #0000FF;
 
     scale: 1.1;
+}
+
+.btnHistorico.light:hover,
+.btnTema.light:hover
+{
+    border: 2px solid #FFFFFF;
+    background-color:  #ffb0dd;
 }
 
 .container
@@ -49,6 +86,11 @@ body
 
     border: 1px solid #FFFFFF;
     border-radius: 10px;
+}
+
+.container.light
+{
+    border: 1px solid #000000;
 }
 
 .calculator,
@@ -67,11 +109,18 @@ body
 
     margin: 10px auto;
 
-    background-color: #1b1b1b;
+    background-color: #1B1B1B;
     border: 1px solid #FFFFFF;
     border-radius: 10px;
 
     transition: 1s;
+}
+
+.calculator.light,
+.Historico.light
+{
+    background-color: #FFFFFF;
+    border: 1px solid #1b1b1b;
 }
 
 .calculator__header
@@ -82,6 +131,13 @@ body
     color: #FFFFFF;
 
     text-align: center;
+
+    transition: 1s;
+}
+
+.calculator__header.light
+{
+    color: #000000;
 }
 
 .calculator__display
@@ -95,8 +151,15 @@ body
     scrollbar-width: none;
     overflow-y: hidden;
 
-    border: 1px solid #ffffff;
+    border: 1px solid #FFFFFF;
     border-radius: 10px;
+}
+
+.calculator__display.light
+{
+    border: 1px solid #000000;
+
+    color: #000000;
 }
 
 .calculator__display-text
@@ -104,6 +167,11 @@ body
     font-size: 35px;
 
     color: #FFFFFF;
+}
+
+.calculator__display-text.light 
+{
+    color: #000000;
 }
 
 .calculator__keys
@@ -121,7 +189,7 @@ body
 
     font-size: 20px;
 
-    border: 1px solid #FFFFFF;
+    border: 1px solid #000000;
     border-radius: 10px;
 
     transition: 0.4s;
@@ -130,7 +198,7 @@ body
 .calculator__key:hover
 {
     color: #ffffff;
-    background-color: #1b1b1b;
+    background-color: #464646;
 
     scale: 1.1;
 }
@@ -144,8 +212,9 @@ body
 .calculator__key--operator:hover,
 .calculator__key--equals:hover
 {
+    color: #000000;
     border: 1px solid #FFC400;
-
+    background-color: #FFFFFF;
     scale: 1.1;
 }
 
@@ -166,7 +235,13 @@ body
 
     overflow-y: scroll;
 
+    border: 1px solid #FFFFFF;
     border-radius: 10px 0 0 10px;
+}
+
+.Historico_itens.light
+{
+    border: 1px solid #000000;
 }
 
 .Historico_itens_container
@@ -183,8 +258,9 @@ body
 
     text-align: center;
 
-    color: #FFFFFF;
-    border: 1px solid #FFFFFF;
+    color: #000000;
+    background-color: #ffffff;
+    border: 1px solid #000000;
     border-radius: 10px;
 }
 
@@ -200,11 +276,10 @@ body
     justify-content: center;
     align-items: center;
 
-    border: 1px solid #FFFFFF;
     border-radius: 10px;
 }
 
-.Historico_button button
+.Historico_button_clear
 {
     width: 80px;
     height: 40px;
@@ -213,15 +288,20 @@ body
 
     font-size: 20px;
 
-    color: #ffffff;
+    color: #FFFFFF;
     background-color: transparent;
-    border: 1px solid red;
+    border: 1px solid #FF0000;
     border-radius: 10px;
 
     transition: 0.5s;
 }
 
-.Historico_button button:hover
+.Historico_button_clear.light
+{
+    color: #000000;
+}
+
+.Historico_button_clear:hover
 {
     color: #000000;
     border: 1px solid  #FFFFFF;
