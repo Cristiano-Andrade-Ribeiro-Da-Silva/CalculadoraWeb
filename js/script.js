@@ -143,18 +143,28 @@ botoes.forEach(botao =>
                 const numero2 = resultado.textContent;
 
                 // Chama a função de cálculo e exibe o resultado
-                resultado.textContent = calcular(numero1, numero2, operador);
+                resultado.textContent = calcular(numero1, numero2, operador)
 
+
+                const ItensSalvos = JSON.parse(localStorage.getItem("salvos")) || [];
+                
                 // Isso aqui é para contas que precisão de dois numeros
                 if (operador == "add" || operador == "subtract" || operador == "multiply" || operador == "divide" || operador == "percentage")
                 {
-                    HistoricoItens.innerHTML += `<li class="Historico_itens_container">${numero1} ${operador} ${numero2} = ${calcular(numero1, numero2, operador)}</li>`;
+                    
+                    const NovoConteudo = HistoricoItens.innerHTML += `<li class="Historico_itens_container">${numero1} ${operador} ${numero2} = ${calcular(numero1, numero2, operador)}</li>`;
+
+                    ItensSalvos.push(NovoConteudo);
+                    localStorage.setItem("salvos", JSON.stringify(ItensSalvos));
                 }
 
                 
                 if (operador == "sqrt" || operador == "power")
                 {
-                    HistoricoItens.innerHTML += `<li class="Historico_itens_container">${numero1} ${operador} = ${calcular(numero1, numero2, operador)}</li>`;
+                    const NovoConteudo = HistoricoItens.innerHTML += `<li class="Historico_itens_container">${numero1} ${operador} = ${calcular(numero1, numero2, operador)}</li>`;
+
+                    ItensSalvos.push(NovoConteudo);
+                    localStorage.setItem("salvos", JSON.stringify(ItensSalvos));
                 }
 
                 // Reseta as variáveis de controle
@@ -164,6 +174,7 @@ botoes.forEach(botao =>
                 break;
 
             default:
+
                 console.log('Não pegou!');
         }
     })
@@ -251,49 +262,20 @@ limparHistorico = document.querySelector(".Historico_button_clear");
 
 limparHistorico.addEventListener('click', () =>
 {
+    // Removendo lista dos salvos 
+    localStorage.removeItem('salvos');
     HistoricoItens.innerHTML = '';
 });
 
-// Tentando usar com local storage⬇️
 
-// window.addEventListener("load", () =>
-// {
-//     // Pegando os itens da lista salvos ou senão haver nada, pega uma lista vazia
-//     ItensSalvos = JSON.parse(localStorage.getItem("salvos")) || [];
+window.addEventListener("load", () =>
+{
+    // Pegando os itens da lista salvos ou senão haver nada, pega uma lista vazia
+    ItensSalvos = JSON.parse(localStorage.getItem("salvos")) || [];
 
-//     // O forEach está lendo a lista toda de itens salvos 
-//     ItensSalvos.forEach(conteudo =>
-//     {
-//         // O addContainer é uma função que adiciona containers em um certo lugar
-//         addContainer(conteudo);
-//     });
-// });
-
-// // Função para adicionar visualmente um container
-// function addContainer(conteudo)
-// {
-//     // Criando um elemento div
-//     const NovaDiv = document.createElement("div");
-
-//     // Adicionando uma classe para esta div
-//     NovaDiv.className = "Historico_itens_container";
-
-//     // Escrevendo o conteúdo dentro da div
-//     NovaDiv.textContent = conteudo;
-
-//     // Colocando a div dentro do container requerido
-//     HistoricoItens.appendChild(NovaDiv);
-// }
-// const sim = document.querySelector(".calculator__key--equals");
-
-// sim.addEventListener("click", () =>
-// {
-//     ItensSalvos = JSON.parse(localStorage.getItem("salvos")) || [];
-
-//     const NovoConteudo = `<span>${numero1} ${operador} ${numero2} = ${calcular(numero1, numero2, operador)}</span>`;
-
-//     ItensSalvos.push(NovoConteudo);
-//     localStorage.setItem("salvos", JSON.stringify(ItensSalvos));
-//     addContainer(NovoConteudo);
-// });
-
+    // O forEach está lendo a lista toda de itens salvos 
+    ItensSalvos.forEach(conteudo =>
+    {
+        HistoricoItens.innerHTML = conteudo;
+    });
+});
