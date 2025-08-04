@@ -78,7 +78,14 @@ botoes.forEach(botao =>
                 operador = '';
                 break;
 
+            // Forma descoberta para encurtar o código 
             case 'power':
+            case 'sqrt':
+            case 'divide':
+            case 'multiply':
+            case 'subtract':
+            case 'add':
+            case 'percentage':
 
                 // Armazena o número atual exibido como o primeiro número
                 numero1 = resultado.textContent;
@@ -90,58 +97,12 @@ botoes.forEach(botao =>
                 esperaNumero2 = true;
                 break;
 
-            case 'sqrt':
-
-                numero1 = resultado.textContent;
-
-                operador = acao;
                 
-                esperaNumero2 = true;
-                break;
+            case 'decimal':
 
-            case 'divide':
+                CalcDisplayTxt.textContent +='.';
 
-                numero1 = resultado.textContent;
-
-                operador = acao;
-
-                esperaNumero2 = true;
-                break;
-
-            case 'multiply':
-
-                numero1 = resultado.textContent;
-
-                operador = acao;
-
-                esperaNumero2 = true;
-                break;
-
-            case 'subtract':
-
-                numero1 = resultado.textContent;
-
-                operador = acao;
-
-                esperaNumero2 = true;
-                break;
-
-            case 'add':
-
-                numero1 = resultado.textContent;
-
-                operador = acao;
-
-                esperaNumero2 = true;
-                break;
-
-            case 'percentage':
-
-                numero1 = resultado.textContent;
-
-                operador = acao;
-
-                esperaNumero2 = true;
+                console.log(CalcDisplayTxt);
                 break;
 
             case 'calculate':
@@ -152,23 +113,60 @@ botoes.forEach(botao =>
                 // Chama a função de cálculo e exibe o resultado
                 resultado.textContent = calcular(numero1, numero2, operador)
 
-
                 const ItensSalvos = JSON.parse(localStorage.getItem("salvos")) || [];
+
+                const Simbolo = (operacao) => 
+                {
+                    switch(operacao)
+                    {
+
+                        case 'power':
+                            return 'x²';
+
+                        case 'sqrt':
+                            return '√';
+                            
+                        case 'divide':
+                            return '÷';
+
+                        case 'multiply':
+                            return 'x';
+
+                        case 'subtract':
+                            return '-';
+
+                        case 'add':
+                            return '+';
+
+                        case 'percentage':
+                            return '%';
+
+                        default: 
+                            return '';
+                    }
+                }
                 
                 // Isso aqui é para contas que precisão de dois numeros
                 if (operador == "add" || operador == "subtract" || operador == "multiply" || operador == "divide" || operador == "percentage")
                 {
-                    
-                    const NovoConteudo = HistoricoItens.innerHTML += `<li class="Historico_itens_container">${numero1} ${operador} ${numero2} = ${calcular(numero1, numero2, operador)}</li>`;
+                    let NovoConteudo = HistoricoItens.innerHTML += `<li class="Historico_itens_container">${numero1} ${Simbolo(operador) } ${numero2} = ${calcular(numero1, numero2, operador)}</li>`;
 
                     ItensSalvos.push(NovoConteudo);
                     localStorage.setItem("salvos", JSON.stringify(ItensSalvos));
                 }
 
                 
-                if (operador == "sqrt" || operador == "power")
+                else if (operador == "power")
                 {
-                    const NovoConteudo = HistoricoItens.innerHTML += `<li class="Historico_itens_container">${numero1} ${operador} = ${calcular(numero1, numero2, operador)}</li>`;
+                    let NovoConteudo = HistoricoItens.innerHTML += `<li class="Historico_itens_container">${numero1} ${Simbolo(operador)} = ${calcular(numero1, numero2, operador)}</li>`;
+
+                    ItensSalvos.push(NovoConteudo);
+                    localStorage.setItem("salvos", JSON.stringify(ItensSalvos));
+                }
+
+                else if(operador == "sqrt")
+                {
+                    let NovoConteudo = HistoricoItens.innerHTML += `<li class="Historico_itens_container">${Simbolo(operador)}${numero1} = ${calcular(numero1, numero2, operador)}</li>`;
 
                     ItensSalvos.push(NovoConteudo);
                     localStorage.setItem("salvos", JSON.stringify(ItensSalvos));
@@ -182,13 +180,13 @@ botoes.forEach(botao =>
 
             default:
 
-                console.log('Não pegou!');
+                console.log('Não pegou !');
         }
     })
 });
 
 
-function calcular(numero1, numero2, operador)
+const calcular = (numero1, numero2, operador) =>
 {
     numero1 = parseFloat(numero1);
     numero2 = parseFloat(numero2);
@@ -213,7 +211,7 @@ function calcular(numero1, numero2, operador)
         case 'divide':
 
             // Evita divisão por zero
-            return numero2 !== 0 ? numero1 / numero2 : 'Erro';
+            return numero2 !== 0 ? numero1 / numero2 : 'Não divisivel por 0';
 
 
         case 'sqrt':
@@ -249,16 +247,16 @@ btnHistorico.addEventListener("click", () =>
 {
     if (situacao)
     {
-        Calc.style.left = "0";
-        Historico.style.top = "10px";
-        Historico.style.opacity = "1";
+        Calc.style.left = "20%";
+        Historico.style.top = "1000px";
+        Historico.style.opacity = "0";
     }
     
     else
     {
-        Calc.style.left = "20%";
-        Historico.style.top = "600px";
-        Historico.style.opacity = "0";
+        Calc.style.left = "0";
+        Historico.style.top = "10px";
+        Historico.style.opacity = "1";
     }
 
     situacao = !situacao;
