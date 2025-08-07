@@ -241,25 +241,66 @@ const calcular = (numero1, numero2, operador) =>
 }
 
 
+const TelaCell = window.matchMedia("(max-width: 1000px)");
+
+// A cada 1 segundo a verificação é feita
+setInterval(() =>
+{
+    // Para o container ficar alinhado
+    // (não sei o do porque ele se desalinhar)
+    if(TelaCell.matches)
+    {
+        Calc.style.left = "0";
+    }
+
+    else
+    {
+        return;
+    }
+
+}, 1000);
+
 let situacao = false;
 
 btnHistorico.addEventListener("click", () =>
 {
-    if (situacao)
+    if(TelaCell.matches)
     {
-        Calc.style.left = "20%";
-        Historico.style.top = "1000px";
-        Historico.style.opacity = "0";
-    }
-    
-    else
-    {
-        Calc.style.left = "0";
-        Historico.style.top = "10px";
-        Historico.style.opacity = "1";
+
+        if (situacao)
+        {
+            Historico.style.top = "1000px";
+            Historico.style.opacity = "1";
+        }
+        
+        else
+        {
+            Historico.style.top = "10px";
+            Historico.style.opacity = "1";
+        }
+
+        situacao = !situacao;
     }
 
-    situacao = !situacao;
+    else
+    {
+        if (situacao)
+        {
+            Calc.style.left = "20%";
+            Historico.style.top = "1000px";
+            Historico.style.opacity = "0";
+        }
+        
+        else
+        {
+            Calc.style.left = "0";
+            Historico.style.top = "10px";
+            Historico.style.opacity = "1";
+        }
+
+        situacao = !situacao;
+    }
+    
 });
 
 

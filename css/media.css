@@ -1,0 +1,37 @@
+@media(max-height: 800px)
+{
+    .container
+    {
+        height: 550px;
+        margin: 10px auto;
+    }
+}
+
+@media(max-width: 1000px)
+{
+    .ButtonsJs
+    {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .container
+    {
+        width: 600px;
+        height: 1000px;
+
+        margin-top: 10px;
+
+        flex-direction: column;
+    }
+
+    .Historico
+    {
+        height: 400px;
+    }
+
+    .Historico_itens_container
+    {
+        padding-top: 10px;
+    }
+}
