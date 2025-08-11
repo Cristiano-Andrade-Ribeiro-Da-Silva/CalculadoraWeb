@@ -251,6 +251,7 @@ setInterval(() =>
     if(TelaCell.matches)
     {
         Calc.style.left = "0";
+        Historico.style.top = "10px";
     }
 
     else
@@ -269,13 +270,11 @@ btnHistorico.addEventListener("click", () =>
 
         if (situacao)
         {
-            Historico.style.top = "1000px";
-            Historico.style.opacity = "1";
+            Historico.style.opacity = "0";
         }
         
         else
         {
-            Historico.style.top = "10px";
             Historico.style.opacity = "1";
         }
 
