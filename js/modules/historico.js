@@ -11,16 +11,7 @@ export const funcaoHistorico = () =>
     {
         // Para o container ficar alinhado
         // (não sei o do porque ele se desalinhar)
-        if(TelaCell.matches)
-        {
-            Calc.style.left = "0";
-            Historico.style.top = "10px";
-        }
-
-        else
-        {
-            return;
-        }
+        if(TelaCell.matches) Calc.classList.add('calculator__cell');
 
     }, 1000);
 
@@ -34,33 +25,32 @@ export const funcaoHistorico = () =>
         if(TelaCell.matches)
         {
 
-            if (situacao)
-            {
-                Historico.style.opacity = "0";
-            }
+            if (situacao) Historico.style.opacity = "0";
             
-            else
-            {
-                Historico.style.opacity = "1";
-            }
+            else Historico.style.opacity = "1";
 
             situacao = !situacao;
         }
 
         else
         {
+
             if (situacao)
             {
-                Calc.style.left = "20%";
-                Historico.style.top = "1000px";
-                Historico.style.opacity = "0";
+                Calc.classList.add('calculator__situacao_01');
+                Calc.classList.remove('calculator__situacao_02');
+
+                Historico.classList.add('Historico__situacao_01');
+                Historico.classList.remove('Historico__situacao_02');
             }
             
             else
             {
-                Calc.style.left = "0";
-                Historico.style.top = "10px";
-                Historico.style.opacity = "1";
+                Calc.classList.remove('calculator__situacao_01');
+                Calc.classList.add('calculator__situacao_02');
+
+                Historico.classList.remove('Historico__situacao_01');
+                Historico.classList.add('Historico__situacao_02');
             }
 
             situacao = !situacao;

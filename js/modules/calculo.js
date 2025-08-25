@@ -6,7 +6,6 @@ export const funcaoBotaoAcao = () =>
     const botoes = document.querySelectorAll('[data-action]');
     const numeros = document.querySelectorAll('[data-number]');
 
-
     let numero1 = '';
     let operador = '';
     let esperaNumero2 = false;
@@ -113,8 +112,9 @@ export const funcaoBotaoAcao = () =>
                             case 'percentage':
                                 return '%';
 
-                            default: 
-                                return '';
+                            default:
+
+                                return 'Erro na operação';
                         }
                     }
                     
@@ -152,7 +152,7 @@ export const funcaoBotaoAcao = () =>
 
                 default:
 
-                    console.log('Não pegou !');
+                    console.log('Erro no calculo');
             }
         });
     });
@@ -208,7 +208,7 @@ export const funcaoBotaoAcao = () =>
 
             default:
                 // Caso não pegue
-                return 'Eita';
+                return 'Operação inválida';
         };
     };
 }
