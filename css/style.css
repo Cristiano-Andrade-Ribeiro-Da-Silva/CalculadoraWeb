@@ -317,29 +317,3 @@ body.light
 
     scale: 1.1;
 }
-
-
-/* Classes manipulano no js do histórico */
-
-    .calculator__situacao_01{ left: 20%; }
-
-    .calculator__situacao_02{ left: 0; }
-
-    .calculator__cell
-    {
-        left: 0;
-        top: 10px;
-    }
-
-    .Historico__situacao_01
-    {
-        top: 1000px;
-        opacity: 0;
-    }
-
-    .Historico__situacao_02
-    {
-        top: 10px;
-        opacity: 1;
-    }
-

@@ -11,7 +11,11 @@ export const funcaoHistorico = () =>
     {
         // Para o container ficar alinhado
         // (não sei o do porque ele se desalinhar)
-        if(TelaCell.matches) Calc.classList.add('calculator__cell');
+        if(TelaCell.matches)
+        {
+            Calc.style.left = "0";
+            Historico.style.top = "10px";
+        }
 
     }, 1000);
 
@@ -37,20 +41,16 @@ export const funcaoHistorico = () =>
 
             if (situacao)
             {
-                Calc.classList.add('calculator__situacao_01');
-                Calc.classList.remove('calculator__situacao_02');
-
-                Historico.classList.add('Historico__situacao_01');
-                Historico.classList.remove('Historico__situacao_02');
+                Calc.style.left = "20%";
+                Historico.style.top = "1000px";
+                Historico.style.opacity = "0";
             }
             
             else
             {
-                Calc.classList.remove('calculator__situacao_01');
-                Calc.classList.add('calculator__situacao_02');
-
-                Historico.classList.remove('Historico__situacao_01');
-                Historico.classList.add('Historico__situacao_02');
+                Calc.style.left = "0";
+                Historico.style.top = "10px";
+                Historico.style.opacity = "1";
             }
 
             situacao = !situacao;
