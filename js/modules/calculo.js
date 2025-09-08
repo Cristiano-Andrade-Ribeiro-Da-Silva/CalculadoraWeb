@@ -71,9 +71,7 @@ export const funcaoBotaoAcao = () =>
                     
                 case 'decimal':
 
-                    CalcDisplayTxt.textContent +='.';
-
-                    console.log(CalcDisplayTxt);
+                    resultado.textContent +='.';
                     break;
 
                 case 'calculate':
