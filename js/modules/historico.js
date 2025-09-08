@@ -17,6 +17,11 @@ export const funcaoHistorico = () =>
             Historico.style.top = "10px";
         }
 
+        else
+        {
+            Calc.style.left = "";
+        }
+
     }, 1000);
 
     const Historico = document.querySelector(".Historico");
