@@ -207,6 +207,7 @@ body.light
 .calculator__key--operator,
 .calculator__key--equals
 {
+    border: 2px solid transparent;
     background-color: #FFC400;
 }
 
@@ -214,7 +215,7 @@ body.light
 .calculator__key--equals:hover
 {
     color: #000000;
-    border: 1px solid #FFC400;
+    border: 2px solid #FFC400;
     background-color: #FFFFFF;
     scale: 1.1;
 }
